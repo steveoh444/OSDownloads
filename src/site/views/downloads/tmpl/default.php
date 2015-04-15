@@ -84,9 +84,9 @@ JHtml::_('stylesheet', 'media/com_osdownloads/css/grid-responsive.css');
             <?php
             // Number of columns
             //$columns = 3;
-            $counter = 0;
-            //$introcount = (count($this->intro_items));
-            $introcount = 11;
+            $CounterItems = 0;
+            //$TotalItems = (count($this->intro_items));
+            $TotalItems = 11;
             ?>
 
             <?php foreach($this->items as $file):?>
@@ -100,9 +100,9 @@ JHtml::_('stylesheet', 'media/com_osdownloads/css/grid-responsive.css');
                 }
 
                 // Number of columns
-                $TotalItems = ((int) $counter % (int) $NumberOfColumn) + 1;
-                if ($TotalItems == 1) :
-                $row = $counter / $NumberOfColumn;
+                $CurrentItem = ((int) $CounterItems % (int) $NumberOfColumn) + 1;
+                if ($CurrentItem == 1) :
+                //$row = $CounterItems / $NumberOfColumn;
                 ?>
                     <div class="ost-section osdownloads-itemlist">
                 <?php endif; ?>
@@ -157,8 +157,8 @@ JHtml::_('stylesheet', 'media/com_osdownloads/css/grid-responsive.css');
                     </div>
                 <?php endif; ?>
 
-                <?php $counter++; ?>
-                <?php if (($TotalItems == $NumberOfColumn) or ($counter == $introcount)) : ?>
+                <?php $CounterItems++; ?>
+                <?php if (($CurrentItem == $NumberOfColumn) or ($CounterItems == $TotalItems)) : ?>
                     </div>
                     <!-- .ost-section -->
                 <?php endif; ?>
