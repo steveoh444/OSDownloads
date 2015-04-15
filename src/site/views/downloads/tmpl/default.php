@@ -80,6 +80,15 @@ JHtml::_('stylesheet', 'media/com_osdownloads/css/grid-responsive.css');
         <?php endif; ?>
 
         <?php if (!empty($this->items)) : ?>
+
+            <?php
+            // Number of columns
+            $columns = 3;
+            $counter = 0;
+            //$introcount = (count($this->intro_items));
+            $introcount = 11;
+            ?>
+
             <?php foreach($this->items as $file):?>
                 <?php
                 $requireEmail = $file->require_user_email;
@@ -90,59 +99,71 @@ JHtml::_('stylesheet', 'media/com_osdownloads/css/grid-responsive.css');
                     $showModal = $requireEmail || $requireAgree || $requireShare;
                 }
 
+                // Number of columns
+                $rowcount = ((int) $counter % (int) $columns) + 1;
+                if ($rowcount == 1) :
+                $row = $counter / $columns;
                 ?>
-                <?php if (in_array($file->access, $authorizedAccessLevels)) : ?>
                     <div class="ost-section">
-                        <div class="block12 item_<?php echo($file->id);?>">
-                            <h3><a href="<?php echo(JRoute::_("index.php?option=com_osdownloads&view=item&id=".$file->id."&Itemid=".JRequest::getVar("Itemid")));?>"><?php echo($file->name);?></a></h3>
-                            <div class="item_content"><?php echo($file->brief);?></div>
+                <?php endif; ?>
 
-                            <?php if ($params->get('show_download_button', 0)) : ?>
-                                <div class="osdownloadsactions">
-                                    <div class="btn_download">
-                                        <?php
-                                        $fileURL = JRoute::_('index.php?option=com_osdownloads&view=item&Itemid=' . $itemId . '&id=' . $file->id);
-                                        ?>
-                                        <a
-                                            href="<?php echo JRoute::_('index.php?option=com_osdownloads&task=routedownload&tmpl=component&Itemid=' . $itemId . '&id=' . $file->id); ?>"
-                                            class="osdownloadsDownloadButton"
-                                            style="color:<?php echo $file->download_color;?>"
-                                            data-direct-page="<?php echo $file->direct_page; ?>"
-                                            data-require-email="<?php echo $requireEmail; ?>"
-                                            data-require-agree="<?php echo $requireAgree ? 1 : 0; ?>"
-                                            data-require-share="<?php echo $requireShare ? 1 : 0; ?>"
-                                            data-id="<?php echo $file->id; ?>"
-                                            data-url="<?php echo $fileURL; ?>"
-                                            data-lang="<?php echo $lang->getTag(); ?>"
-                                            data-name="<?php echo $file->name; ?>"
-                                            data-agreement-article="<?php echo $file->agreementLink; ?>"
-                                            <?php if ($this->isPro) : ?>
-                                                data-hashtags="<?php echo str_replace('#', '', @$file->twitter_hashtags); ?>"
-                                                data-via="<?php echo str_replace('@', '', @$file->twitter_via); ?>"
-                                            <?php endif; ?>
-                                            >
-                                            <span>
-                                                <?php echo $params->get('link_label', JText::_('COM_OSDOWNLOADS_DOWNLOAD')); ?>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
+                <?php if (in_array($file->access, $authorizedAccessLevels)) : ?>
+                    <div class="block<?php echo round((12 / $columns)); ?> item_<?php echo($file->id);?>">
+                        <h3><a href="<?php echo(JRoute::_("index.php?option=com_osdownloads&view=item&id=".$file->id."&Itemid=".JRequest::getVar("Itemid")));?>"><?php echo($file->name);?></a></h3>
+                        <div class="item_content"><?php echo($file->brief);?></div>
 
-                            <?php if ($params->get('show_readmore_button', 1)) : ?>
-                                <div class="readmore_wrapper">
-                                    <div class="readmore">
-                                        <a href="<?php echo(JRoute::_("index.php?option=com_osdownloads&view=item&id=".$file->id."&Itemid=".JRequest::getVar("Itemid")));?>">
-                                            <?php echo(JText::_("COM_OSDOWNLOADS_READ_MORE"));?>
-                                        </a>
-                                    </div>
-                                    <div class="clr"></div>
+                        <?php if ($params->get('show_download_button', 0)) : ?>
+                            <div class="osdownloadsactions">
+                                <div class="btn_download">
+                                    <?php
+                                    $fileURL = JRoute::_('index.php?option=com_osdownloads&view=item&Itemid=' . $itemId . '&id=' . $file->id);
+                                    ?>
+                                    <a
+                                        href="<?php echo JRoute::_('index.php?option=com_osdownloads&task=routedownload&tmpl=component&Itemid=' . $itemId . '&id=' . $file->id); ?>"
+                                        class="osdownloadsDownloadButton"
+                                        style="color:<?php echo $file->download_color;?>"
+                                        data-direct-page="<?php echo $file->direct_page; ?>"
+                                        data-require-email="<?php echo $requireEmail; ?>"
+                                        data-require-agree="<?php echo $requireAgree ? 1 : 0; ?>"
+                                        data-require-share="<?php echo $requireShare ? 1 : 0; ?>"
+                                        data-id="<?php echo $file->id; ?>"
+                                        data-url="<?php echo $fileURL; ?>"
+                                        data-lang="<?php echo $lang->getTag(); ?>"
+                                        data-name="<?php echo $file->name; ?>"
+                                        data-agreement-article="<?php echo $file->agreementLink; ?>"
+                                        <?php if ($this->isPro) : ?>
+                                            data-hashtags="<?php echo str_replace('#', '', @$file->twitter_hashtags); ?>"
+                                            data-via="<?php echo str_replace('@', '', @$file->twitter_via); ?>"
+                                        <?php endif; ?>
+                                        >
+                                        <span>
+                                            <?php echo $params->get('link_label', JText::_('COM_OSDOWNLOADS_DOWNLOAD')); ?>
+                                        </span>
+                                    </a>
                                 </div>
-                            <?php endif; ?>
-                            <div class="seperator"></div>
-                        </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($params->get('show_readmore_button', 1)) : ?>
+                            <div class="readmore_wrapper">
+                                <div class="readmore">
+                                    <a href="<?php echo(JRoute::_("index.php?option=com_osdownloads&view=item&id=".$file->id."&Itemid=".JRequest::getVar("Itemid")));?>">
+                                        <?php echo(JText::_("COM_OSDOWNLOADS_READ_MORE"));?>
+                                    </a>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+                        <?php endif; ?>
+                        <div class="seperator"></div>
                     </div>
                 <?php endif; ?>
+
+                <?php $counter++; ?>
+                <?php if (($rowcount == $columns) or ($counter == $introcount)) : ?>
+                    </div>
+                    <!-- .ost-section -->
+                <?php endif; ?>
+
             <?php endforeach;?>
         <?php endif; ?>
         <div class="clr"></div>
