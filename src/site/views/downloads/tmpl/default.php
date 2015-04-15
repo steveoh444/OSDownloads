@@ -104,7 +104,7 @@ JHtml::_('stylesheet', 'media/com_osdownloads/css/grid-responsive.css');
                 if ($rowcount == 1) :
                 $row = $counter / $columns;
                 ?>
-                    <div class="ost-section">
+                    <div class="ost-section osdownloads-itemlist">
                 <?php endif; ?>
 
                 <?php if (in_array($file->access, $authorizedAccessLevels)) : ?>
@@ -154,7 +154,6 @@ JHtml::_('stylesheet', 'media/com_osdownloads/css/grid-responsive.css');
                                 <div class="clr"></div>
                             </div>
                         <?php endif; ?>
-                        <div class="seperator"></div>
                     </div>
                 <?php endif; ?>
 

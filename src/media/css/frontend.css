@@ -1,18 +1,11 @@
 /* OSDOWNLOADS */
-.seperator
+.osdownloads-itemlist
 {
-    border-bottom:1px dotted #999999;
-    margin-bottom:10px;
-    margin-top:5px;
+    border-bottom:1px dotted #cccccc;
 }
 
 .category_filter {
     margin-bottom: 30px;
-}
-
-.category_filter .seperator
-{
-    border:none;
 }
 
 .sub_title
