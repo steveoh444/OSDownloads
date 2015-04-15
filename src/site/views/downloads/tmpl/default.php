@@ -83,7 +83,7 @@ JHtml::_('stylesheet', 'media/com_osdownloads/css/grid-responsive.css');
 
             <?php
             // Number of columns
-            $columns = 3;
+            //$columns = 3;
             $counter = 0;
             //$introcount = (count($this->intro_items));
             $introcount = 11;
@@ -100,15 +100,15 @@ JHtml::_('stylesheet', 'media/com_osdownloads/css/grid-responsive.css');
                 }
 
                 // Number of columns
-                $rowcount = ((int) $counter % (int) $columns) + 1;
-                if ($rowcount == 1) :
-                $row = $counter / $columns;
+                $TotalItems = ((int) $counter % (int) $NumberOfColumn) + 1;
+                if ($TotalItems == 1) :
+                $row = $counter / $NumberOfColumn;
                 ?>
                     <div class="ost-section osdownloads-itemlist">
                 <?php endif; ?>
 
                 <?php if (in_array($file->access, $authorizedAccessLevels)) : ?>
-                    <div class="block<?php echo round((12 / $columns)); ?> item_<?php echo($file->id);?>">
+                    <div class="block<?php echo round((12 / $NumberOfColumn)); ?> item_<?php echo($file->id);?>">
                         <h3><a href="<?php echo(JRoute::_("index.php?option=com_osdownloads&view=item&id=".$file->id."&Itemid=".JRequest::getVar("Itemid")));?>"><?php echo($file->name);?></a></h3>
                         <div class="item_content"><?php echo($file->brief);?></div>
 
@@ -158,7 +158,7 @@ JHtml::_('stylesheet', 'media/com_osdownloads/css/grid-responsive.css');
                 <?php endif; ?>
 
                 <?php $counter++; ?>
-                <?php if (($rowcount == $columns) or ($counter == $introcount)) : ?>
+                <?php if (($TotalItems == $NumberOfColumn) or ($counter == $introcount)) : ?>
                     </div>
                     <!-- .ost-section -->
                 <?php endif; ?>
