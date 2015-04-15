@@ -99,7 +99,7 @@ JHtml::_('stylesheet', 'media/com_osdownloads/css/grid-responsive.css');
                     $showModal = $requireEmail || $requireAgree || $requireShare;
                 }
 
-                // Number of columns
+                // Open a new row
                 $CurrentItem = ((int) $CounterItems % (int) $NumberOfColumn) + 1;
                 if ($CurrentItem == 1) :
                 //$row = $CounterItems / $NumberOfColumn;
@@ -151,14 +151,16 @@ JHtml::_('stylesheet', 'media/com_osdownloads/css/grid-responsive.css');
                                         <?php echo(JText::_("COM_OSDOWNLOADS_READ_MORE"));?>
                                     </a>
                                 </div>
-                                <div class="clr"></div>
                             </div>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
 
-                <?php $CounterItems++; ?>
-                <?php if (($CurrentItem == $NumberOfColumn) or ($CounterItems == $TotalItems)) : ?>
+                <?php
+                // Close the row
+                $CounterItems++;
+                if (($CurrentItem == $NumberOfColumn) or ($CounterItems == $TotalItems)) :
+                ?>
                     </div>
                     <!-- .ost-section -->
                 <?php endif; ?>
