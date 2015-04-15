@@ -25,6 +25,10 @@ if ($params->get('load_jquery', false)) {
 
 $doc->addScript('media/com_osdownloads/js/jquery.osdownloads.bundle.min.js', 'text/javascript', true);
 
+// CSS
+JHtml::_('stylesheet', 'media/com_osdownloads/css/grid.css');
+JHtml::_('stylesheet', 'media/com_osdownloads/css/grid-responsive.css');
+
 ?>
 <form action="<?php echo(JRoute::_("index.php?option=com_osdownloads&view=downloads&id=".JRequest::getVar("id")."&Itemid=".JRequest::getVar("Itemid")));?>" method="post" name="adminForm" id="adminForm">
     <div class="contentopen osdownloads-container">
