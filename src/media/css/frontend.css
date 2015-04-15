@@ -20,14 +20,14 @@
     padding-bottom:20px;
 }
 
-.readmore
-{
-    float:right;
-}
-
 .clr
 {
     clear:both;
+}
+
+.readmore_wrapper
+{
+    margin-bottom: 20px;
 }
 
 .reference .readmore
